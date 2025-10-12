@@ -13,7 +13,7 @@ resource "aws_subnet" "public" {
 }
 
 
-resource "aws_internet_gateway" {
+resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
   tags = { Name = "terraform-igw" }
 }
@@ -29,13 +29,13 @@ resource "aws_route_table"  "public_rt" {
   tags = { Name = "terraform-rt" }
 }
 
-resource " aws_rt_association" "public_assoc" {
+resource "aws_rt_association" "public_assoc" {
   subnet_id = aws_subnet.public.id
   route_table_id = aws_route_table.public_rt.id
 }
 
 resource "aws_security_group" "web_sg" {
-  name        = "web_sg"
+  name        = "web-sg"
   description = "Allow HTTP and SSH inbound"
   vpc_id      = aws_vpc.main.id
   
@@ -45,15 +45,15 @@ resource "aws_security_group" "web_sg" {
     from_port = 80
     to_port = 80
     protocol ="tcp"
-    cidr_block = [ "0.0.0.0/0" ]
+    cidr_block = ["0.0.0.0/0"]
   }
 
   ingress {
-    description ="Allow SSH"
+    description = "Allow SSH"
     from_port = 22
     to_port = 22
     protocol ="tcp"
-    cidr_block = [ "0.0.0.0/0" ]
+    cidr_block = ["0.0.0.0/0"]
   }
 
 
@@ -61,10 +61,10 @@ resource "aws_security_group" "web_sg" {
     from_port =0
     to_port =0
     protocol="-1"
-    cidr_block = [ "0.0.0.0/0" ]
+    cidr_block = ["0.0.0.0/0"]
   }
 
-  tags = { Name = terraform-web-sg" }
+  tags = { Name  = " terraform-web-sg" }
 }
 
 
