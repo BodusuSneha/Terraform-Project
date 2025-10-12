@@ -1,0 +1,16 @@
+# Terraform local directories and files
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+
+# terraform files that may contain secrets
+*.tfvars
+
+# logs
+*.log
+
+# private key files
+*.pem
+
