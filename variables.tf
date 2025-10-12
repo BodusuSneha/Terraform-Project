@@ -10,7 +10,7 @@ variable "ami_id" {
 
 variable "key_name" {
   description = "Key Pair of EC2"
-  default     = "terraform_key"
+  default     = "key_name"
 }
 
 
